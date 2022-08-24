@@ -23,7 +23,7 @@ class MandantFactory extends Factory
             'name' => fake()->name(),
             'uuid' => Uuid::uuid4()->toString(),
             'username' => fake()->userName(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi', // password
+            'password' => fake()->password(4, 6), // password
             'country_id' => fake()->numberBetween(2, 100),
             'street' => fake()->streetName(),
             'zip' => fake()->numberBetween(1010, 99999),
