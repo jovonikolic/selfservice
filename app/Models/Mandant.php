@@ -19,6 +19,7 @@ class Mandant extends Authenticatable
     protected $fillable = [
         'name',
         'uuid',
+        'email',
         'username',
         'password',
         'street',
