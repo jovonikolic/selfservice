@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         Mandant::factory()->create([
             'name' => 'Admin',
             'uuid' => fake()->uuid(),
+            'uuid' => 'admin@admin.at',
             'username' => 'Admin',
             'password' => 'admin', // password
             'country_id' => fake()->numberBetween(2, 100),

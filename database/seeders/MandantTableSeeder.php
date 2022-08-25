@@ -15,6 +15,6 @@ class MandantTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Mandant::factory(10)->create();
     }
 }
