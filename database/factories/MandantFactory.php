@@ -22,6 +22,7 @@ class MandantFactory extends Factory
         return [
             'name' => fake()->name(),
             'uuid' => Uuid::uuid4()->toString(),
+            'email' => fake()->email(),
             'username' => fake()->userName(),
             'password' => fake()->password(4, 6), // password
             'country_id' => fake()->numberBetween(2, 100),
