@@ -18,7 +18,13 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $mandantId = auth()->user()->id;        // gets the current mandant id
+
+    $cp = DB::table('cps')            // fetches all stations with the corresponding mandant id
+    ->where("mandant_id", "=", $mandantId)
+        ->get();
+
+    return view('dashboard', ['cp' => $cp, 'mandantId' => $mandantId]);
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
