@@ -29,6 +29,6 @@ Route::get('/dashboard', function () {
     return view('dashboard', ['cp' => $cp, 'mandantId' => $mandantId]);
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('stations', [ChargingStationController::class, 'getStations']);
+Route::get('/stations', [ChargingStationController::class, 'getStations']);
 
 require __DIR__.'/auth.php';
