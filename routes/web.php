@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ChargingStationController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -27,5 +28,7 @@ Route::get('/dashboard', function () {
 
     return view('dashboard', ['cp' => $cp, 'mandantId' => $mandantId]);
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('stations', [ChargingStationController::class, 'getStations']);
 
 require __DIR__.'/auth.php';

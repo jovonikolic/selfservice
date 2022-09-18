@@ -16,7 +16,14 @@ import { createApp } from 'vue';
 const app = createApp({});
 
 import ExampleComponent from './components/ExampleComponent.vue';
+import StationList from './components/stations/StationList.vue';
+import Topic from "./components/dashboard/components/Topic.vue";
+import Dashboard from "./components/dashboard/Dashboard.vue";
+
 app.component('example-component', ExampleComponent);
+app.component('station-list', StationList);
+app.component('dashboard', Dashboard);
+app.component('topic', Topic);
 
 /**
  * The following block of code may be used to automatically register your
