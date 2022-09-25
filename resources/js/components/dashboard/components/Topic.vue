@@ -1,13 +1,13 @@
 <template>
-    <div class="topic-container">
         <button class="topic"
             @click="handleClick">
             <span class="btn-text"> {{ topic }} </span>
         </button>
-    </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     name: "Topic",
     props: {
@@ -18,19 +18,25 @@ export default {
     },
     methods: {
         handleClick() {
+            let url = '/' + this.topic.replace(/\s+/g, '');
+            const promise = new Promise((resolve) => {
+                resolve(window.location.href = url)
+            })
 
+            axios
+                .get(url)
+                .then(
+                    promise.resolve
+                )
+                .catch((error) => {
+                    console.log(error)
+                })
         }
     }
 }
 </script>
 
 <style scoped>
-.topic-container {
-    display: flex;
-    flex-direction: row;
-    margin-left: 10%;
-    margin-top: 5%;
-}
 
 .topic {
     margin-right: 3%;

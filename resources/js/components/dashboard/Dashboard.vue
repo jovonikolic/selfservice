@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <div class="topic-container">
         <Topic
-            :topic="'Charging Station'">
+            :topic="'Charging Stations'">
         </Topic>
         <Topic
-            :topic="'Charging Process'">
+            :topic="'Charging Processes'">
         </Topic>
     </div>
 </template>
@@ -17,3 +17,13 @@ export default {
 }
 </script>
 
+<style>
+
+.topic-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1%;
+    margin-top: 1%;
+}
+
+</style>
