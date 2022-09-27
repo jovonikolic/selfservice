@@ -1,8 +1,8 @@
 <template>
     <div>
-        <DataTable>
+        <DataTable class="custom-datatable">
             <TableHead>
-                <TableRow>
+                <TableRow class="table-head-row">
                     <TableHeadCells
                         :headers="headers"
                     >
@@ -10,7 +10,7 @@
                 </TableRow>
             </TableHead>
 
-            <TableBody>
+            <TableBody class="table-body">
                 <TableRow
                     v-for="dataRow in data"
                 >
@@ -49,5 +49,21 @@ export default {
 </script>
 
 <style scoped>
+
+.custom-datatable {
+    width: 100%;
+}
+
+.table-head-row {
+    background-color: midnightblue;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    font-size: large;
+}
+
+.table-body tr:nth-child(even){background-color: #f2f2f2;}
+
+.table-body tr:hover {background-color: #ddd;}
 
 </style>

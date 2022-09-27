@@ -1,5 +1,5 @@
 <template>
-    <td>
+    <td class="table-data">
         <slot />
     </td>
 </template>
@@ -11,5 +11,10 @@ export default {
 </script>
 
 <style scoped>
+
+.table-data {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
 
 </style>

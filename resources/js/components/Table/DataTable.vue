@@ -1,5 +1,5 @@
 <template>
-    <table class="table table-striped">
+    <table>
         <slot />
     </table>
 </template>

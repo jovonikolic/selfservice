@@ -1,5 +1,5 @@
 <template>
-    <thead>
+    <thead class="table-head">
         <slot />
     </thead>
 </template>
@@ -11,5 +11,10 @@ export default {
 </script>
 
 <style scoped>
+
+.table-head {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
 
 </style>
