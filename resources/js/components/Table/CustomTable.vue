@@ -6,15 +6,18 @@
                     <TableHeadCells
                         :headers="headers"
                     >
-                        test
                     </TableHeadCells>
                 </TableRow>
             </TableHead>
 
             <TableBody>
-                <TableRow>
-                    <TableData>
-
+                <TableRow
+                    v-for="dataRow in data"
+                >
+                    <TableData
+                        v-for="dataCell in dataRow"
+                    >
+                        {{ dataCell }}
                     </TableData>
                 </TableRow>
             </TableBody>
@@ -29,29 +32,19 @@ import TableRow from "./TableRow.vue";
 import TableHeadCells from "./TableHeadCells.vue";
 import TableBody from "./TableBody.vue";
 import TableData from "./TableData.vue";
-import axios from "axios";
 export default {
     name: "CustomTable",
     components: {TableData, TableBody, TableHeadCells, TableRow, TableHead, DataTable},
-    data() {
-        return {
-            headers: [],
-            data: []
+    props: {
+        headers: {
+            type: Array,
+            required: true,
+        },
+        data: {
+            type: Array,
+            required: true,
         }
     },
-    mounted() {
-        this.getData()
-    },
-    methods: {
-        getData() {
-            axios
-                .get('/stations')
-                .then((response) => {
-                    console.log(response);
-                    this.data = response;
-                })
-        }
-    }
 }
 </script>
 

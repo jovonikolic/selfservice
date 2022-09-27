@@ -1,6 +1,8 @@
 <template>
-    <th>
-        {{ headers }}
+    <th
+        v-for="header in headers"
+    >
+        {{ header }}
     </th>
 </template>
 
@@ -9,7 +11,7 @@ export default {
     name: "TableHeadCells",
     props: {
         headers: {
-            type: String,
+            type: Array,
             required: true,
         }
     }
