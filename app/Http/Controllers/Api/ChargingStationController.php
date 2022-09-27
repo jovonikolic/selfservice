@@ -15,7 +15,19 @@ class ChargingStationController extends Controller
     public function getStationsByMandantId(Request $request): JsonResponse
     {
         $mandantId = auth()->user()->id;
-        $cps = Cp::query()->where("mandant_id", "=", $mandantId)->get();
+        $cps = Cp::query()->where("mandant_id", "=", $mandantId)->get(
+            [
+                "id",
+                "label",
+                "public_display_name",
+                "street",
+                "city",
+                "zip",
+                "geo_long",
+                "geo_lat",
+                "serialnumber"
+            ]
+        );
 
         return response()->json([
             'cps' => $cps
