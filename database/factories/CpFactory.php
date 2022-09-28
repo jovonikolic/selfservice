@@ -17,7 +17,7 @@ class CpFactory extends Factory
     public function definition()
     {
         return [
-            'label' => fake()->slug(3),
+            'label' => fake()->slug(2),
             'mandant_id' => fake()->numberBetween(2, 100),
             'country_id' => fake()->numberBetween(2, 100),
             'active' => fake()->numberBetween(0, 1),

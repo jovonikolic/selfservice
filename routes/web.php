@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+require __DIR__.'/auth.php';
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -29,6 +31,6 @@ Route::get('/dashboard', function () {
     return view('dashboard', ['cp' => $cp, 'mandantId' => $mandantId]);
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('stations', [ChargingStationController::class, 'getStations']);
+Route::get('/stations', [ChargingStationController::class, 'getStationsByMandantId']);
 
-require __DIR__.'/auth.php';
+Route::get('/ChargingStations', [ChargingStationController::class, 'overview']);

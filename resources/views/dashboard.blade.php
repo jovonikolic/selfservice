@@ -10,15 +10,6 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <dashboard></dashboard>
-                    @foreach($cp as $key => $data)
-                        <tr>
-                            <th> <b> Stationsname: </b> {{ $data->label }} </th> <br/>
-                            <th> <b> Öffentlicher Name: </b> {{ $data->public_display_name }} </th> <br/>
-                            <th> <b> Straße: </b> {{ $data->street }} </th> <br/>
-                            <th> <b> PLZ: </b> {{ $data->zip }} </th> <br/>
-                            <th> <b> Stadt: </b> {{ $data->city }} </th> <br/>
-                        </tr>
-                    @endforeach
                 </div>
             </div>
         </div>

@@ -15,16 +15,6 @@ import { createApp } from 'vue';
 
 const app = createApp({});
 
-import ExampleComponent from './components/ExampleComponent.vue';
-import StationList from './components/stations/StationList.vue';
-import Topic from "./components/dashboard/components/Topic.vue";
-import Dashboard from "./components/dashboard/Dashboard.vue";
-
-app.component('example-component', ExampleComponent);
-app.component('station-list', StationList);
-app.component('dashboard', Dashboard);
-app.component('topic', Topic);
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -33,9 +23,9 @@ app.component('topic', Topic);
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// Object.entries(import.meta.glob('./**/*.vue', { eager: true })).forEach(([path, definition]) => {
-//     app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
-// });
+Object.entries(import.meta.glob('./**/*.vue', { eager: true })).forEach(([path, definition]) => {
+    app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
+});
 
 import Alpine from 'alpinejs';
 window.Alpine = Alpine;

@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         Mandant::factory()->create([
             'name' => 'Admin',
             'uuid' => fake()->uuid(),
-            'uuid' => 'admin@admin.at',
+            'email' => 'admin@admin.at',
             'username' => 'Admin',
             'password' => 'admin', // password
             'country_id' => fake()->numberBetween(2, 100),
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'vat' => fake()->iban()
         ]);
         Mandant::factory(100)->create();
-        Cp::factory(100)->create();
+        Cp::factory(10000)->create();
         ChargeLog::factory(100)->create();
     }
 }
