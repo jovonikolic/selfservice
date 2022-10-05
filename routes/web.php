@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\ChargingProcessController;
 use App\Http\Controllers\Api\ChargingStationController;
+use App\Http\Controllers\Api\ErrorController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -32,5 +34,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/stations', [ChargingStationController::class, 'getStationsByUserId']);
+Route::get('/chargelogs', [ChargingProcessController::class, 'getChargeLogsByUserId']);
+Route::get('/errors', [ErrorController::class, 'getErrorsByUserId']);
 
 Route::get('/ChargingStations', [ChargingStationController::class, 'overview']);
+Route::get('/ChargingProcesses', [ChargingProcessController::class, 'overview']);
+Route::get('/Errors', [ErrorController::class, 'overview']);
