@@ -32,8 +32,11 @@ class ErrorFactory extends Factory
                 'Cable error',
                 'No info available',
             ]),
-            'occurred' => fake()->dateTime(),
-            'solved' => fake()->dateTime()
+            'occurred' => fake()->dateTimeBetween('-2 years'),
+            'solved' => fake()->randomElement([
+                null,
+                fake()->dateTimeBetween('-18 months')
+            ]),
         ];
     }
 }

@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\ChargeLog;
 use App\Models\Country;
 use App\Models\Cp;
+use App\Models\Error;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Database\Seeder;
@@ -48,5 +49,6 @@ class DatabaseSeeder extends Seeder
         }
         Cp::factory(1000)->create();
         ChargeLog::factory(100)->create();
+        Error::factory(1000)->create();
     }
 }

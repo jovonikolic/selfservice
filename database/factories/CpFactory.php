@@ -18,7 +18,7 @@ class CpFactory extends Factory
     {
         return [
             'label' => fake()->slug(2),
-            'user_id' => fake()->numberBetween(2, 100),
+            'user_id' => fake()->numberBetween(3, 100),
             'country_id' => fake()->numberBetween(2, 100),
             'active' => fake()->numberBetween(0, 1),
             'public_display_name' => fake()->words(3, true),
