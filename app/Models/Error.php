@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class Mandant extends Authenticatable
+class Error extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     /**
      * The attributes that are mass assignable.
@@ -17,15 +17,11 @@ class Mandant extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'uuid',
-        'email',
-        'username',
-        'password',
-        'street',
-        'zip',
-        'city',
-        'vat'
+        'cp_id',
+        'code',
+        'info',
+        'occurred',
+        'solved'
     ];
 
     /**
@@ -34,7 +30,6 @@ class Mandant extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
     ];
 
     /**

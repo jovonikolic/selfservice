@@ -22,15 +22,15 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    $mandantId = auth()->user()->id;        // gets the current mandant id
+    $userId = auth()->user()->id;        // gets the current user id
 
-    $cp = DB::table('cps')            // fetches all stations with the corresponding mandant id
-    ->where("mandant_id", "=", $mandantId)
+    $cp = DB::table('cps')            // fetches all stations with the corresponding user id
+    ->where("user_id", "=", $userId)
         ->get();
 
-    return view('dashboard', ['cp' => $cp, 'mandantId' => $mandantId]);
+    return view('dashboard', ['cp' => $cp, 'userId' => $userId]);
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/stations', [ChargingStationController::class, 'getStationsByMandantId']);
+Route::get('/stations', [ChargingStationController::class, 'getStationsByUserId']);
 
 Route::get('/ChargingStations', [ChargingStationController::class, 'overview']);

@@ -6,7 +6,7 @@ namespace Database\Seeders;
 use App\Models\ChargeLog;
 use App\Models\Country;
 use App\Models\Cp;
-use App\Models\Mandant;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
 
         Country::factory(100)->create();
         // First create an admin user and then the others
-        Mandant::factory()->create([
+        User::factory()->create([
             'name' => 'Admin',
             'uuid' => fake()->uuid(),
             'email' => 'admin@admin.at',
@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
             'city' => fake()->city(),
             'vat' => fake()->iban()
         ]);
-        Mandant::factory(100)->create();
+        User::factory(100)->create();
         Cp::factory(10000)->create();
         ChargeLog::factory(100)->create();
     }
