@@ -6,6 +6,9 @@
         <Topic
             :topic="'Charging Processes'">
         </Topic>
+        <Topic
+            :topic="'Errors'">
+        </Topic>
     </div>
 </template>
 

@@ -20,6 +20,16 @@
                         {{ dataCell }}
                     </TableData>
                 </TableRow>
+                <TableRow
+                    v-if="!data || data.length === 0"
+                >
+                    <TableData
+                        :colspan="headers.length"
+                        class="empty-table"
+                    >
+                        {{ "No available data!" }}
+                    </TableData>
+                </TableRow>
             </TableBody>
         </DataTable>
     </div>
@@ -66,4 +76,7 @@ export default {
 
 .table-body tr:hover {background-color: #ddd;}
 
+.empty-table {
+    text-align: center;
+}
 </style>

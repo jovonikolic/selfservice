@@ -2,31 +2,27 @@
     <CustomTable
         :headers="headers"
         :data="data"
-    >
-    </CustomTable>
+    />
 </template>
 
 <script>
 import CustomTable from "../Table/CustomTable.vue";
 import axios from "axios";
-
 export default {
+    name: "ErrorList",
     components: {CustomTable},
     data() {
         return {
             headers:
                 [
-                    "Id",
-                    "Station Name",
-                    "Public Name",
-                    "Street",
-                    "City",
-                    "Zip",
-                    "Lat",
-                    "Long",
-                    "Serial number",
+                    "ID",
+                    "Code",
+                    "Info",
+                    "Station ID",
+                    "Occured",
+                    "Solved"
                 ],
-            data: []
+            data: [],
         }
     },
     mounted() {
@@ -35,11 +31,15 @@ export default {
     methods: {
         getData() {
             axios
-                .get('/stations')
+                .get('/errors')
                 .then((response) => {
-                    this.data = response.data.cps;
+                    this.data = response.data.errors;
                 })
         }
     }
 }
 </script>
+
+<style scoped>
+
+</style>

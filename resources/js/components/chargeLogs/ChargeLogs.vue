@@ -2,8 +2,7 @@
     <CustomTable
         :headers="headers"
         :data="data"
-    >
-    </CustomTable>
+    />
 </template>
 
 <script>
@@ -11,22 +10,20 @@ import CustomTable from "../Table/CustomTable.vue";
 import axios from "axios";
 
 export default {
+    name: "ChargeLogs",
     components: {CustomTable},
     data() {
         return {
             headers:
                 [
-                    "Id",
-                    "Station Name",
-                    "Public Name",
-                    "Street",
-                    "City",
-                    "Zip",
-                    "Lat",
-                    "Long",
-                    "Serial number",
+                    "ID",
+                    "Start",
+                    "End",
+                    "kWh at start",
+                    "kWh at end",
+                    "Invoiced"
                 ],
-            data: []
+            data: [],
         }
     },
     mounted() {
@@ -35,11 +32,15 @@ export default {
     methods: {
         getData() {
             axios
-                .get('/stations')
+                .get('/chargelogs')
                 .then((response) => {
-                    this.data = response.data.cps;
+                    this.data = response.data.chargingProcesses;
                 })
         }
     }
 }
 </script>
+
+<style scoped>
+
+</style>
