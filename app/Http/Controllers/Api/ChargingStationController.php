@@ -12,10 +12,10 @@ use Illuminate\Http\Request;
 
 class ChargingStationController extends Controller
 {
-    public function getStationsByMandantId(Request $request): JsonResponse
+    public function getStationsByUserId(Request $request): JsonResponse
     {
-        $mandantId = auth()->user()->id;
-        $cps = Cp::query()->where("mandant_id", "=", $mandantId)->get(
+        $userId = auth()->user()->id;
+        $cps = Cp::query()->where("user_id", "=", $userId)->get(
             [
                 "id",
                 "label",

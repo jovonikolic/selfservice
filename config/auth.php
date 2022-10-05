@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'mandants',
+        'passwords' => 'users',
     ],
 
     /*
@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'mandants',
+            'provider' => 'users',
         ],
     ],
 
@@ -60,9 +60,10 @@ return [
     */
 
     'providers' => [
-        'mandants' => [
+        'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Mandant::class,
+            'model' => App\Models\User::class,
+            'table' => 'users'
         ],
 
         // 'users' => [
@@ -87,8 +88,8 @@ return [
     */
 
     'passwords' => [
-        'mandants' => [
-            'provider' => 'mandants',
+        'users' => [
+            'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

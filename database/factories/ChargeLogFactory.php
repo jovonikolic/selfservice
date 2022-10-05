@@ -20,7 +20,7 @@ class ChargeLogFactory extends Factory
     {
         return [
             'cp_id' => fake()->numberBetween(2, 100),
-            'mandant_id' => fake()->numberBetween(2, 100),
+            'user_id' => fake()->numberBetween(3, 100),
             'invoiced' => fake()->numberBetween(0, 1),
             'uuid' => fake()->uuid(),
             'start' => fake()->dateTimeBetween('-2 years'),

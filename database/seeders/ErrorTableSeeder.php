@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Mandant;
+use App\Models\Error;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class MandantTableSeeder extends Seeder
+class ErrorTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class MandantTableSeeder extends Seeder
      */
     public function run()
     {
-        Mandant::factory(10)->create();
+        Error::factory(10)->create();
     }
 }
