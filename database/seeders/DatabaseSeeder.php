@@ -7,8 +7,11 @@ use App\Models\ChargeLog;
 use App\Models\Country;
 use App\Models\Cp;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,20 +27,26 @@ class DatabaseSeeder extends Seeder
 
         Country::factory(100)->create();
         // First create an admin user and then the others
-        User::factory()->create([
+        $admin = User::create([
             'name' => 'Admin',
             'uuid' => fake()->uuid(),
             'email' => 'admin@admin.at',
             'username' => 'Admin',
-            'password' => 'admin', // password
+            'password' => Hash::make('admin'), // password
             'country_id' => fake()->numberBetween(2, 100),
             'street' => fake()->streetName(),
-            'zip' => fake()->numberBetween(1010, 99999),
+            'zip' => fake()->postcode(),
             'city' => fake()->city(),
             'vat' => fake()->iban()
         ]);
-        User::factory(100)->create();
-        Cp::factory(10000)->create();
+        event(new Registered($admin));
+        Auth::login($admin);
+        $users = User::factory(100)->create();
+        foreach ($users as $user) {
+            event(new Registered($user));
+            Auth::login($user);
+        }
+        Cp::factory(1000)->create();
         ChargeLog::factory(100)->create();
     }
 }

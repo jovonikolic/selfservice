@@ -49,7 +49,7 @@ class RegisteredUserController extends Controller
             'street' => fake()->streetName(),
             'city' => fake()->city(),
             'zip' => fake()->postcode(),
-            'vat' => fake()->swiftBicNumber(),
+            'vat' => fake()->iban(),
         ]);
 
         event(new Registered($user));

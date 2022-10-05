@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Ramsey\Uuid\Uuid;
 
@@ -24,7 +25,7 @@ class UserFactory extends Factory
             'uuid' => Uuid::uuid4()->toString(),
             'email' => fake()->email(),
             'username' => fake()->userName(),
-            'password' => fake()->word(), // password
+            'password' => Hash::make('asdfasdf'), // password
             'country_id' => fake()->numberBetween(2, 100),
             'street' => fake()->streetName(),
             'zip' => fake()->numberBetween(1010, 99999),
