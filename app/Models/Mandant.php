@@ -25,7 +25,8 @@ class Mandant extends Authenticatable
         'street',
         'zip',
         'city',
-        'vat'
+        'vat',
+        'country_id'
     ];
 
     /**
