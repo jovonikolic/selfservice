@@ -70,7 +70,6 @@ CREATE TABLE `charge_logs`
 (
     `id`         int(11) NOT NULL,
     `cp_id`      int(11) NOT NULL,
-    `user_id` int(11) NOT NULL,
     `invoiced`   bit(1)  NOT NULL,
     `uuid`       varchar(255) DEFAULT NULL,
     `start`      datetime     DEFAULT NULL,
@@ -126,7 +125,6 @@ ALTER TABLE `countries`
 --
 ALTER TABLE `charge_logs`
     ADD PRIMARY KEY (`id`),
-    ADD KEY `fk_user_id` (`user_id`),
     ADD KEY `fk_cp_id` (`cp_id`);
 
 
@@ -198,7 +196,6 @@ COMMIT;
 -- Constraints der Tabelle `charge_logs`
 --
 ALTER TABLE `charge_logs`
-    ADD CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
     ADD CONSTRAINT `fk_cp_id` FOREIGN KEY (`cp_id`) REFERENCES `cps` (`id`);
 COMMIT;
 
