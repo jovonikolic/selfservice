@@ -4,15 +4,23 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Error;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
+use Mpdf\Mpdf;
+use Mpdf\MpdfException;
 
 class ErrorController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function getErrorsByUserId(Request $request): JsonResponse
     {
         $userId = auth()->user()->id;
@@ -44,5 +52,15 @@ class ErrorController extends Controller
     public function overview(Request $request): Factory|View|Application
     {
         return view('errors');
+    }
+
+    /**
+     * @param Request $request
+     * @return string|null
+     * @throws Exception
+     */
+    public function getErrorExport(Request $request)
+    {
+        return null;
     }
 }
