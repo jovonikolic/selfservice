@@ -40,3 +40,5 @@ Route::get('/errors', [ErrorController::class, 'getErrorsByUserId']);
 Route::get('/ChargingStations', [ChargingStationController::class, 'overview']);
 Route::get('/ChargingProcesses', [ChargingProcessController::class, 'overview']);
 Route::get('/Errors', [ErrorController::class, 'overview']);
+
+Route::get('getErrorExport', [ErrorController::class, 'getErrorExport']);
