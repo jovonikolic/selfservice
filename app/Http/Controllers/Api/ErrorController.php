@@ -59,7 +59,7 @@ class ErrorController extends Controller
      * @return string|null
      * @throws Exception
      */
-    public function getErrorExport(Request $request)
+    public function getErrorExport(Request $request): ?string
     {
         return null;
     }
