@@ -42,6 +42,21 @@ class ErrorController extends Controller
         ]);
     }
 
+    public function getErrorsForChart1(Request $request)
+    {
+        $userId = auth()->user()->id;
+
+        $errors = DB::table('errors')
+            ->leftJoin('cps', 'errors.cp_id', '=', 'cps.id')
+            ->select([
+                "errors.code",
+            ])
+            ->where('cps.user_id', '=', $userId)->get();
+
+        return response()->json([
+            'errors' => $errors
+        ]);
+    }
 
     /**
      * Redirects to
@@ -61,6 +76,6 @@ class ErrorController extends Controller
      */
     public function getErrorExport(Request $request): ?string
     {
-        return null;
+        return view('charts/chartError');
     }
 }
