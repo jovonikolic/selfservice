@@ -37,6 +37,10 @@ Route::get('/stations', [ChargingStationController::class, 'getStationsByUserId'
 Route::get('/chargelogs', [ChargingProcessController::class, 'getChargeLogsByUserId']);
 Route::get('/errors', [ErrorController::class, 'getErrorsByUserId']);
 
+Route::get('/chartErrors', [ErrorController::class, 'getErrorsTypes']);
+Route::get('/solvedErrorsChart', [ErrorController::class, 'getSolvedErrors']);
+Route::get('/errorOccurrence', [ErrorController::class, 'getErrorOccurrences']);
+
 Route::get('/ChargingStations', [ChargingStationController::class, 'overview']);
 Route::get('/ChargingProcesses', [ChargingProcessController::class, 'overview']);
 Route::get('/Errors', [ErrorController::class, 'overview']);
