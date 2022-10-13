@@ -1,10 +1,16 @@
 <template>
     <div class="container">
-        <pie-chart
+        <bar-chart
             :data="chartData"
-        >
+        />
 
-        </pie-chart>
+        <pie-chart
+            :data="pieChartData"
+        />
+
+        <!--<line-chart
+            :data="occurrenceData"
+        />!-->
     </div>
 </template>
 
@@ -19,10 +25,20 @@ export default {
                 type: Object,
                 required: false,
             },
+            pieChartData: {
+                type: Object,
+                required: false
+            },
+            occurrenceData: {
+                type: Object,
+                required: false
+            },
         }
     },
     mounted() {
         this.getChartData();
+        this.getPieChartData();
+        this.getOccurrenceData();
     },
     methods: {
         getChartData() {
@@ -59,8 +75,51 @@ export default {
                                 break;
                         }
                     }
-                    
+
                     this.chartData = errors;
+                })
+        },
+        getPieChartData() {
+            axios
+                .get('/solvedErrorsChart')
+                .then((response) => {
+                    this.pieChartData = Object.assign({}, response.data);
+                })
+        },
+        getOccurrenceData() {
+            axios
+                .get('/errorOccurrence')
+                .then((response) => {
+                    //let responseObj = Object.assign({}, response.data.errors);
+
+                    let responseObj = response.data.errors;
+
+                    for (const pos in responseObj) {
+                        responseObj[pos].occurred = responseObj[pos].occurred.slice(0,10);
+                        responseObj[pos].Count = 1;
+                    }
+
+                    var reduced = responseObj.reduce(function(allDates, date) {
+                        if (allDates.some(function(e) {
+                            return e.occurred === date.occurred
+                        })) {
+                            allDates.filter(function(e) {
+                                return e.occurred === date.occurred
+                            })[0].Count += +date.Count
+                        } else {
+                            allDates.push({
+                                occurred: date.occurred,
+                                Count: +date.Count
+                            })
+                        }
+                        return allDates
+                    }, []);
+
+                    var output = Object.assign({}, reduced);
+
+                    console.log(output)
+
+                    this.occurrenceData = output;
                 })
         }
     }

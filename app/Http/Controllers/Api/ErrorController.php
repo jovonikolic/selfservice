@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Error;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -12,8 +11,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
-use Mpdf\Mpdf;
-use Mpdf\MpdfException;
 
 class ErrorController extends Controller
 {
@@ -42,7 +39,11 @@ class ErrorController extends Controller
         ]);
     }
 
-    public function getErrorsForChart1(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getErrorsTypes(Request $request): JsonResponse
     {
         $userId = auth()->user()->id;
 
@@ -50,6 +51,52 @@ class ErrorController extends Controller
             ->leftJoin('cps', 'errors.cp_id', '=', 'cps.id')
             ->select([
                 "errors.code",
+            ])
+            ->where('cps.user_id', '=', $userId)->get();
+
+        return response()->json([
+            'errors' => $errors
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getSolvedErrors(Request $request): JsonResponse
+    {
+        $userId = auth()->user()->id;
+
+        $unsolvedCount = DB::table('errors')
+            ->leftJoin('cps', 'errors.cp_id', '=', 'cps.id')
+            ->select([
+                "errors.solved"
+            ])
+            ->where('cps.user_id', '=', $userId)->get()->count();
+
+        $solvedCount = DB::table('errors')
+            ->leftJoin('cps', 'errors.cp_id', '=', 'cps.id')
+            ->where('cps.user_id', '=', $userId)
+            ->where('errors.solved', '=', null)->count();
+
+        return response()->json([
+            'Unsolved' => $unsolvedCount,
+            'Solved' => $solvedCount
+        ]);
+    }
+
+    /** Occurrence
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getErrorOccurrences(Request $request): JsonResponse
+    {
+        $userId = auth()->user()->id;
+
+        $errors = DB::table('errors')
+            ->leftJoin('cps', 'errors.cp_id', '=', 'cps.id')
+            ->select([
+                "errors.occurred"
             ])
             ->where('cps.user_id', '=', $userId)->get();
 
