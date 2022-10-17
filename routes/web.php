@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\ChargingProcessController;
 use App\Http\Controllers\Api\ChargingStationController;
 use App\Http\Controllers\Api\ErrorController;
+use App\Http\Controllers\CsvController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -17,16 +18,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    $userId = auth()->user()->id;        // gets the current user id
+    $userId = auth()->user()->id;     // gets the current user id
 
-    $cp = DB::table('cps')            // fetches all stations with the corresponding user id
+    $cp = DB::table('cps')      // fetches all stations with the corresponding user id
     ->where("user_id", "=", $userId)
         ->get();
 
@@ -45,4 +46,7 @@ Route::get('/ChargingStations', [ChargingStationController::class, 'overview']);
 Route::get('/ChargingProcesses', [ChargingProcessController::class, 'overview']);
 Route::get('/Errors', [ErrorController::class, 'overview']);
 
-Route::get('getErrorExport', [ErrorController::class, 'getErrorExport']);
+Route::get('/getErrorExport', [ErrorController::class, 'getErrorExport']);
+
+Route::get('/csvExport/{type}', [CsvController::class, 'getCSV']);
+
