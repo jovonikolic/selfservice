@@ -4,6 +4,9 @@
             :data="chartData"
         />
 
+        <h3 style="font-size: 19px; font-weight: bold">
+            Resolved Errors
+        </h3>
         <pie-chart
             :data="pieChartData"
         />
