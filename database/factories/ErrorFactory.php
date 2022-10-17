@@ -17,7 +17,7 @@ class ErrorFactory extends Factory
     public function definition()
     {
         return [
-            'cp_id' => fake()->numberBetween(2, 99),
+            'cp_id' => fake()->numberBetween(2, 9999),
             'code' => fake()->randomElement([
                 'ConnectorLockFailure',
                 'OtherError',
