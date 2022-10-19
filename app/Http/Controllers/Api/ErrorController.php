@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
@@ -60,6 +61,8 @@ class ErrorController extends Controller
     }
 
     /**
+     * Solved Errors chart
+     *
      * @param Request $request
      * @return JsonResponse
      */
@@ -85,7 +88,9 @@ class ErrorController extends Controller
         ]);
     }
 
-    /** Occurrence
+    /**
+     * Occurrence chart
+     *
      * @param Request $request
      * @return JsonResponse
      */
@@ -106,7 +111,7 @@ class ErrorController extends Controller
     }
 
     /**
-     * Redirects to
+     * Redirects to error page
      *
      * @param Request $request
      * @return Factory|View|Application
@@ -124,5 +129,25 @@ class ErrorController extends Controller
     public function getErrorExport(Request $request): ?string
     {
         return view('charts/chartError');
+    }
+
+    /**
+     * @param int|null $userId
+     */
+    public function getErrorsForCSVExport(int $userId = null): Collection
+    {
+        $errors = DB::table('errors')
+            ->leftJoin('cps', 'errors.cp_id', '=', 'cps.id')
+            ->select([
+                "errors.id",
+                "errors.code",
+                "errors.info",
+                "errors.cp_id",
+                "errors.occurred",
+                "errors.solved"
+            ])
+            ->where('cps.user_id', '=', $userId)->get();
+
+        return $errors;
     }
 }

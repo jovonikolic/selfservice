@@ -2,7 +2,7 @@ CREATE TABLE `cps`
 (
     `id`                  int(11) NOT NULL,
     `label`               varchar(255) DEFAULT NULL COMMENT 'Name of cp',
-    `user_id`          int(11)      DEFAULT NULL,
+    `user_id`             int(11)      DEFAULT NULL,
     `country_id`          int(11)      DEFAULT NULL,
     `active`              bit(1)       DEFAULT NULL,
     `public_display_name` varchar(255) DEFAULT NULL,
