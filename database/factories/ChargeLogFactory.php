@@ -2,12 +2,11 @@
 
 namespace Database\Factories;
 
-use DateTime;
+use App\Models\ChargeLog;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Collection;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ChargeLog>
+ * @extends Factory<ChargeLog>
  */
 class ChargeLogFactory extends Factory
 {

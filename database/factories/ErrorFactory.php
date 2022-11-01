@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Error;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Error>
+ * @extends Factory<Error>
  */
 class ErrorFactory extends Factory
 {

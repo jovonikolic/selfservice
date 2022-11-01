@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class ChargingStationController extends Controller
@@ -47,7 +48,11 @@ class ChargingStationController extends Controller
         return view('stations');
     }
 
-    public function getStationsForCSVExport($userId)
+    /**
+     * @param $userId
+     * @return Collection
+     */
+    public function getStationsForCSVExport($userId): Collection
     {
         $cps = DB::table('cps')
             ->select([
