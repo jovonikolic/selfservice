@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class ChargingProcessController extends Controller
@@ -34,6 +35,27 @@ class ChargingProcessController extends Controller
         ]);
     }
 
+    /**
+     * @param int|null $userId
+     * @return Collection
+     */
+    public function getChargeLogsForCSVExport(int $userId = null): Collection
+    {
+        $chargingProcesses = DB::table('charge_logs')
+            ->leftJoin('cps', 'charge_logs.cp_id', '=', 'cps.id')
+            ->select([
+                "charge_logs.id",
+                "charge_logs.cp_id",
+                "charge_logs.start",
+                "charge_logs.end",
+                "charge_logs.kwh_start",
+                "charge_logs.kwh_end",
+                "charge_logs.invoiced"
+            ])
+            ->where('cps.user_id', '=', $userId)->get();
+
+        return $chargingProcesses;
+    }
 
     /**
      * Redirects to

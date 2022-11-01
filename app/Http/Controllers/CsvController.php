@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Api\ChargingProcessController;
+use App\Http\Controllers\Api\ChargingStationController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\ErrorController;
 use Ramsey\Uuid\Uuid;
@@ -14,9 +16,30 @@ class CsvController extends Controller
      */
     protected ErrorController $errorController;
 
-    public function __construct(ErrorController $errorController)
+    /**
+     * @var ChargingProcessController
+     */
+    protected ChargingProcessController $chargingProcessController;
+
+    /**
+     * @var ChargingStationController
+     */
+    protected ChargingStationController $chargingStationController;
+
+    /**
+     * When the class is called, the controllers are available through dependency injection
+     *
+     * @param ErrorController $errorController
+     * @param ChargingProcessController $chargingProcessController
+     * @param ChargingStationController $chargingStationController
+     */
+    public function __construct(ErrorController           $errorController,
+                                ChargingProcessController $chargingProcessController,
+                                ChargingStationController $chargingStationController)
     {
         $this->errorController = $errorController;
+        $this->chargingProcessController = $chargingProcessController;
+        $this->chargingStationController = $chargingStationController;
     }
 
     /**
@@ -33,6 +56,7 @@ class CsvController extends Controller
         }
 
         $data = null;
+        $headers = null;
         $fileName = Uuid::uuid4()->toString();
 
         // TODO: Create cases for other export types
@@ -48,6 +72,31 @@ class CsvController extends Controller
                     "solved"
                 ]];
                 break;
+            case 'chargingProcesses':
+                $data = $this->chargingProcessController->getChargeLogsForCSVExport($userId);
+                $headers = [[
+                    "id",
+                    "cp_id",
+                    "start",
+                    "end",
+                    "kwh_start",
+                    "kwh_end",
+                    "invoiced"
+                ]];
+                break;
+            case 'chargingStations':
+                $data = $this->chargingStationController->getStationsForCSVExport($userId);
+                $headers = [[
+                    "id",
+                    "label",
+                    "public_display_name",
+                    "street",
+                    "city",
+                    "zip",
+                    "geo_long",
+                    "geo_lat",
+                    "serialnumber"
+                ]];
             default:
                 break;
         }
