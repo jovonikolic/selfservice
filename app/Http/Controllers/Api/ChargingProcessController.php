@@ -24,8 +24,7 @@ class ChargingProcessController extends Controller
                 "charge_logs.cp_id",
                 "charge_logs.start",
                 "charge_logs.end",
-                "charge_logs.kwh_start",
-                "charge_logs.kwh_end",
+                "charge_logs.consumption",
                 "charge_logs.invoiced"
             ])
             ->where('cps.user_id', '=', $userId)->get();
@@ -48,8 +47,7 @@ class ChargingProcessController extends Controller
                 "charge_logs.cp_id",
                 "charge_logs.start",
                 "charge_logs.end",
-                "charge_logs.kwh_start",
-                "charge_logs.kwh_end",
+                "charge_logs.consumption",
                 "charge_logs.invoiced"
             ])
             ->where('cps.user_id', '=', $userId)->get();
