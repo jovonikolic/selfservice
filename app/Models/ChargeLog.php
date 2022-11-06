@@ -21,8 +21,7 @@ class ChargeLog extends Model
         'end',
         'updated_at',
         'created_at',
-        'kwh_start',
-        'kwh_end',
+        'consumption',
     ];
 
     /**
