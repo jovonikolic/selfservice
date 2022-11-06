@@ -50,3 +50,5 @@ Route::get('/getErrorExport', [ErrorController::class, 'getErrorExport']);
 
 Route::get('/csvExport/{type}', [CsvController::class, 'getCSV']);
 
+Route::get('/chargingProcessAnalytics', [ChargingProcessController::class, 'analyzeChargingTimeline']);
+Route::get('/getDataForChargingProcessAnalytics', [ChargingProcessController::class, 'getDataForChargingProcessAnalytics']);

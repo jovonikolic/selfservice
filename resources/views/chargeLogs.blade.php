@@ -12,6 +12,9 @@
                     <a href="{{ url('/csvExport', ["chargingProcesses"]) }}" target="_blank">
                         <button class="btn"><i class="fa fa-download"></i> Download Raw Data </button>
                     </a>
+                    <a type="button" href="{{ url('/chargingProcessAnalytics') }}" style="display: block">
+                        Analyze Charging Process Data
+                    </a>
                     <charge-logs></charge-logs>
                 </div>
             </div>

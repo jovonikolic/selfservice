@@ -65,4 +65,24 @@ class ChargingProcessController extends Controller
     {
         return view('chargeLogs');
     }
+
+    public function analyzeChargingTimeline(): Factory|View|Application
+    {
+        return view('charts/chartChargingProcess');
+    }
+
+    public function getDataForChargingProcessAnalytics()
+    {
+        $userId = auth()->user()->id;
+        $chargingProcesses = DB::table('charge_logs')
+            ->leftJoin('cps', 'charge_logs.cp_id', '=', 'cps.id')
+            ->select(
+                "charge_logs.consumption",
+                "charge_logs.start",
+                "charge_logs.end"
+            )
+            ->where('cps.user_id', '=', $userId)->get();
+
+        return $chargingProcesses;
+    }
 }
