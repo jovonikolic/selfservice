@@ -20,8 +20,7 @@ export default {
                     "Station ID",
                     "Start",
                     "End",
-                    "kWh at start",
-                    "kWh at end",
+                    "Consumption in kWh",
                     "Invoiced"
                 ],
             data: [],
@@ -36,7 +35,13 @@ export default {
                 .get('/chargelogs')
                 .then((response) => {
                     this.data = response.data.chargingProcesses;
+                    this.convertDataToHumanReadable();
                 })
+        },
+        convertDataToHumanReadable() {
+            this.data.forEach(function (obj) {
+                obj.invoiced = obj.invoiced == 1 ? "Yes" : "No";
+            });
         }
     }
 }
