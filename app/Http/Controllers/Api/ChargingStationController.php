@@ -9,6 +9,8 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class ChargingStationController extends Controller
 {
@@ -44,5 +46,28 @@ class ChargingStationController extends Controller
     public function overview(Request $request): Factory|View|Application
     {
         return view('stations');
+    }
+
+    /**
+     * @param $userId
+     * @return Collection
+     */
+    public function getStationsForCSVExport($userId): Collection
+    {
+        $cps = DB::table('cps')
+            ->select([
+                "cps.id",
+                "cps.label",
+                "cps.public_display_name",
+                "cps.street",
+                "cps.city",
+                "cps.zip",
+                "cps.geo_long",
+                "cps.geo_lat",
+                "cps.serialnumber"
+            ])
+            ->where('cps.user_id', '=', $userId)->get();
+
+        return $cps;
     }
 }
