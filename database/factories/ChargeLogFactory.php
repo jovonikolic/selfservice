@@ -21,8 +21,8 @@ class ChargeLogFactory extends Factory
             'cp_id' => fake()->numberBetween(2, 999),
             'invoiced' => fake()->numberBetween(0, 1),
             'uuid' => fake()->uuid(),
-            'start' => fake()->dateTimeBetween('-15 hours', '-7 hours'),
-            'end' => fake()->dateTimeBetween('-6 hours', '+10 hours'),
+            'start' => fake()->dateTimeBetween('-13 day -9 hours', '-13 day -2 hours'),
+            'end' => fake()->dateTimeBetween('-13 day +3 hours', '-13 day +16 hours'),
             'consumption' => fake()->numberBetween(5, 80),
         ];
     }

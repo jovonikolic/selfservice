@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
             Auth::login($user);
         }
         Cp::factory(1000)->create();
-        ChargeLog::factory(10000)->create();
+        ChargeLog::factory(7000)->create();
         Error::factory(10000)->create();
     }
 }
