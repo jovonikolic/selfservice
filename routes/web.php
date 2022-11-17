@@ -52,3 +52,6 @@ Route::get('/csvExport/{type}', [CsvController::class, 'getCSV']);
 
 Route::get('/chargingProcessAnalytics', [ChargingProcessController::class, 'analyzeChargingTimeline']);
 Route::get('/getDataForChargingProcessAnalytics', [ChargingProcessController::class, 'getDataForChargingProcessAnalytics']);
+Route::get('/getWeeklyChargingProcessData', [ChargingProcessController::class, 'getWeeklyChargingProcessData']);
+Route::get('/getMonthlyChargingProcessData', [ChargingProcessController::class, 'getMonthlyChargingProcessData']);
+Route::get('/getLatestChargingProcess', [ChargingProcessController::class, 'getLatestChargingProcess']);
