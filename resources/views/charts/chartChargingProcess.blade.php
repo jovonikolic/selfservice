@@ -9,7 +9,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                        <timeline-charging-processes></timeline-charging-processes>
+                    <h3 style="font-size: 19px; font-weight: bold">
+                        Aggregated Consumption of all charging processes within a day
+                    </h3>
+                    <timeline-charging-processes></timeline-charging-processes>
+
                     </div>
                 </div>
             </div>
