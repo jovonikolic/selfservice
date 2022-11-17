@@ -71,7 +71,7 @@ class ChargingProcessController extends Controller
         return view('charts/chartChargingProcess');
     }
 
-    public function getDataForChargingProcessAnalytics()
+    public function getDataForChargingProcessAnalytics(): Collection
     {
         $userId = auth()->user()->id;
         $chargingProcesses = DB::table('charge_logs')
@@ -81,7 +81,65 @@ class ChargingProcessController extends Controller
                 "charge_logs.start",
                 "charge_logs.end"
             )
-            ->where('cps.user_id', '=', $userId)->get();
+            ->where('cps.user_id', '=', $userId)
+            ->whereDate("charge_logs.start", "=", date("2022-11-15"))->get(); // filter by date
+
+        return $chargingProcesses;
+    }
+
+
+    public function getWeeklyChargingProcessData(): Collection
+    {
+        $userId = auth()->user()->id;
+
+        $chargingProcesses = DB::table('charge_logs')
+            ->leftJoin('cps', 'charge_logs.cp_id', '=', 'cps.id')
+            ->select(
+                "charge_logs.consumption",
+                "charge_logs.start",
+                "charge_logs.end"
+            )
+            ->where('cps.user_id', '=', $userId)
+            ->whereDate("charge_logs.start", ">=", date("2022-11-21"))
+            ->whereDate("charge_logs.start", "<=", date("2022-11-27"))
+            ->get(); // filter by date
+
+        return $chargingProcesses;
+    }
+
+    public function getMonthlyChargingProcessData(): Collection
+    {
+        $userId = auth()->user()->id;
+
+        $chargingProcesses = DB::table('charge_logs')
+            ->leftJoin('cps', 'charge_logs.cp_id', '=', 'cps.id')
+            ->select(
+                "charge_logs.consumption",
+                "charge_logs.start",
+                "charge_logs.end"
+            )
+            ->where('cps.user_id', '=', $userId)
+            ->whereDate("charge_logs.start", ">=", date("2022-11-01"))
+            ->whereDate("charge_logs.start", "<=", date("2022-11-30"))
+            ->get(); // filter by date
+
+        return $chargingProcesses;
+    }
+
+    public function getLatestChargingProcess(): Collection
+    {
+        $userId = auth()->user()->id;
+
+        $chargingProcesses = DB::table('charge_logs')
+            ->leftJoin('cps', 'charge_logs.cp_id', '=', 'cps.id')
+            ->select(
+                "charge_logs.consumption",
+                "charge_logs.start",
+                "charge_logs.end"
+            )
+            ->where('cps.user_id', '=', $userId)
+            ->orderBy("charge_logs.start", "desc")
+            ->limit(1)->get();
 
         return $chargingProcesses;
     }
