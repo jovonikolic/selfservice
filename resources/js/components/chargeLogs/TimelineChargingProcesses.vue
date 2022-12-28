@@ -3,7 +3,7 @@
         :data="chargingProcesses"
         :round="2"
         :download="true"
-        />
+    />
 
 
     <h3 style="font-size: 19px; font-weight: bold; margin-top: 50px">
