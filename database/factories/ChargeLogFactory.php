@@ -21,10 +21,9 @@ class ChargeLogFactory extends Factory
             'cp_id' => fake()->numberBetween(2, 999),
             'invoiced' => fake()->numberBetween(0, 1),
             'uuid' => fake()->uuid(),
-            'start' => fake()->dateTimeBetween('-8 hours', 'now'),
-            'end' => fake()->dateTimeBetween('+1 hour', '+8 hours'),
-            'kwh_start' => fake()->numberBetween(0, 999999999),
-            'kwh_end' => fake()->numberBetween(70, 99999999),
+            'start' => fake()->dateTimeBetween('-13 day -9 hours', '-13 day -2 hours'),
+            'end' => fake()->dateTimeBetween('-13 day +3 hours', '-13 day +16 hours'),
+            'consumption' => fake()->numberBetween(5, 80),
         ];
     }
 }

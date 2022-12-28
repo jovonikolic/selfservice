@@ -68,16 +68,15 @@ CREATE TABLE `countries`
 
 CREATE TABLE `charge_logs`
 (
-    `id`         int(11) NOT NULL,
-    `cp_id`      int(11) NOT NULL,
-    `invoiced`   bit(1)  NOT NULL,
-    `uuid`       varchar(255) DEFAULT NULL,
-    `start`      datetime     DEFAULT NULL,
-    `end`        datetime     DEFAULT NULL,
-    `updated_at` datetime     DEFAULT NULL,
-    `created_at` datetime     DEFAULT NULL,
-    `kwh_start`  bigint(13)   DEFAULT NULL,
-    `kwh_end`    bigint(13)   DEFAULT NULL
+    `id`          int(11) NOT NULL,
+    `cp_id`       int(11) NOT NULL,
+    `invoiced`    bit(1)  NOT NULL,
+    `uuid`        varchar(255) DEFAULT NULL,
+    `start`       datetime     DEFAULT NULL,
+    `end`         datetime     DEFAULT NULL,
+    `updated_at`  datetime     DEFAULT NULL,
+    `created_at`  datetime     DEFAULT NULL,
+    `consumption` bigint(13)   DEFAULT NULL
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='Charge log table';
 

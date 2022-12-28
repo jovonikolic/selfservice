@@ -59,7 +59,6 @@ class CsvController extends Controller
         $headers = null;
         $fileName = Uuid::uuid4()->toString();
 
-        // TODO: Create cases for other export types
         switch ($exportType) {
             case 'errors':
                 $data = $this->errorController->getErrorsForCSVExport($userId);
@@ -79,8 +78,7 @@ class CsvController extends Controller
                     "cp_id",
                     "start",
                     "end",
-                    "kwh_start",
-                    "kwh_end",
+                    "consumption",
                     "invoiced"
                 ]];
                 break;
@@ -112,9 +110,12 @@ class CsvController extends Controller
     {
         $fp = fopen($fileName . '.csv', 'w');
 
+        // Write headers to file
         foreach ($headers as $header) {
             fputcsv($fp, $header);
         }
+
+        // Insert content from getCSV() method to csv file
         foreach ($data as $fields) {
             fputcsv($fp, get_object_vars($fields));
         }
